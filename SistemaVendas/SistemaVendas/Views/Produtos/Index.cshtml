@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SistemaVendas.Models.Produto>
+
+@{
+    ViewBag.Title = "Gerenciar Produtos";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFabricacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preço)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponivel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    var disponivel = item.Disponivel ? "Sim" : "Não";
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFabricacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preço)
+        </td>
+        <td>
+            @Html.DisplayName(disponivel)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Sistema de Vendas</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Bem vindo ao Sistema de Vendas</h2>
+        <p>
+            Com ele, é possível gerenciar vendas e estoques de produtos da sua loja de forma simples e rápida.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Realizar uma Venda</h2>
+        <p>You can build the application by following the steps in the tutorial series on the ASP.NET site.</p>
+        <p class="btn btn-default"> @Html.ActionLink("Vender", "Index", "Vendas") </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Gerencie se Estoque</h2>
+        <p> Dados como data de validade, discontinuidade e disponibilidade do produto devem ser atualizados frequentemente </p>
+        <p class="btn btn-default"> @Html.ActionLink("Gerenciar Estoque", "Index", "Estoque") </p>
+    </div>
+</div>
