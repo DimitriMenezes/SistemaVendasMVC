@@ -7,13 +7,13 @@ namespace SistemaVendas.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ColumnNamesChanged : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ColumnNamesChanged));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807190031311_ColumnNamesChanged"; }
+            get { return "201807192114345_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

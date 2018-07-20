@@ -1,13 +1,13 @@
-﻿@model IEnumerable<SistemaVendas.Models.Estoque>
+﻿@model IEnumerable<SistemaVendas.Models.ItemVenda>
 
 @{
-    ViewBag.Title = "Estoque";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Criar")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Quantidade)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Editar", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Detalhes", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Remover", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

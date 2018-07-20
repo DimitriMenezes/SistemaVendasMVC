@@ -19,32 +19,40 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataFabricacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataFabricacao)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Preço)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Preço)
+            @Html.DisplayName("R$ " + Model.Preço)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Disponivel)
+            @Html.DisplayNameFor(model => model.Estoque)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Disponivel)
+            @Html.DisplayFor(model => model.Estoque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFabricacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayName(Model.DataFabricacao.ToShortDateString())
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valido)
+        </dt>
+
+        <dd>
+            @Html.DisplayName(Model.Valido ? "Sim" : "Não")
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

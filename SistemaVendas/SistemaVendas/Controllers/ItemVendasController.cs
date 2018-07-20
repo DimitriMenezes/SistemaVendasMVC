@@ -11,112 +11,112 @@ using SistemaVendas.Models;
 
 namespace SistemaVendas.Controllers
 {
-    public class EstoqueController : Controller
+    public class ItemVendasController : Controller
     {
         private VendasContext db = new VendasContext();
 
-        // GET: Estoque
+        // GET: ItemVendas
         public ActionResult Index()
         {
-            var estoques = db.Estoques.Include(e => e.Produto);
-            return View(estoques.ToList());
+            var itemVendas = db.ItemVendas.Include(i => i.Produto);
+            return View(itemVendas.ToList());
         }
 
-        // GET: Estoque/Details/5
+        // GET: ItemVendas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estoque estoque = db.Estoques.Find(id);
-            if (estoque == null)
+            ItemVenda itemVenda = db.ItemVendas.Find(id);
+            if (itemVenda == null)
             {
                 return HttpNotFound();
             }
-            return View(estoque);
+            return View(itemVenda);
         }
 
-        // GET: Estoque/Create
+        // GET: ItemVendas/Create
         public ActionResult Create()
         {
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ID", "Descricao");
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "Id", "Descricao");
             return View();
         }
 
-        // POST: Estoque/Create
+        // POST: ItemVendas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Quantidade,ProdutoId")] Estoque estoque)
+        public ActionResult Create([Bind(Include = "Id,Quantidade,ProdutoId")] ItemVenda itemVenda)
         {
             if (ModelState.IsValid)
             {
-                db.Estoques.Add(estoque);
+                db.ItemVendas.Add(itemVenda);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ID", "Descricao", estoque.ProdutoId);
-            return View(estoque);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "Id", "Descricao", itemVenda.ProdutoId);
+            return View(itemVenda);
         }
 
-        // GET: Estoque/Edit/5
+        // GET: ItemVendas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estoque estoque = db.Estoques.Find(id);
-            if (estoque == null)
+            ItemVenda itemVenda = db.ItemVendas.Find(id);
+            if (itemVenda == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ID", "Descricao", estoque.ProdutoId);
-            return View(estoque);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "Id", "Descricao", itemVenda.ProdutoId);
+            return View(itemVenda);
         }
 
-        // POST: Estoque/Edit/5
+        // POST: ItemVendas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Quantidade,ProdutoId")] Estoque estoque)
+        public ActionResult Edit([Bind(Include = "Id,Quantidade,ProdutoId")] ItemVenda itemVenda)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(estoque).State = EntityState.Modified;
+                db.Entry(itemVenda).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ID", "Descricao", estoque.ProdutoId);
-            return View(estoque);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "Id", "Descricao", itemVenda.ProdutoId);
+            return View(itemVenda);
         }
 
-        // GET: Estoque/Delete/5
+        // GET: ItemVendas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estoque estoque = db.Estoques.Find(id);
-            if (estoque == null)
+            ItemVenda itemVenda = db.ItemVendas.Find(id);
+            if (itemVenda == null)
             {
                 return HttpNotFound();
             }
-            return View(estoque);
+            return View(itemVenda);
         }
 
-        // POST: Estoque/Delete/5
+        // POST: ItemVendas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Estoque estoque = db.Estoques.Find(id);
-            db.Estoques.Remove(estoque);
+            ItemVenda itemVenda = db.ItemVendas.Find(id);
+            db.ItemVendas.Remove(itemVenda);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

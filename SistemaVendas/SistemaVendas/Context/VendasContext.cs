@@ -18,7 +18,7 @@ namespace SistemaVendas.Context
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Venda> Vendas { get; set; }
-        public DbSet<Estoque> Estoques { get; set; }
+        public DbSet<ItemVenda> ItemVendas { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace SistemaVendas.Context
             //Evitar tabelas descritas no plural
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Configurations.Add(new VendaTypeConfiguration());
-            modelBuilder.Configurations.Add(new EstoqueTypeConfiguration());
+            modelBuilder.Configurations.Add(new ItemVendaTypeConfiguration());
         }
     }
 }

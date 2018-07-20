@@ -15,10 +15,12 @@ namespace SistemaVendas.Controllers
     {
         private VendasContext db = new VendasContext();
 
+
         // GET: Vendas
         public ActionResult Index()
         {
-            return View(db.Vendas.ToList());
+            var vendas = db.Vendas.Include(v => v.ItemDeVenda);
+            return View(vendas.ToList());
         }
 
         // GET: Vendas/Details/5
@@ -39,6 +41,7 @@ namespace SistemaVendas.Controllers
         // GET: Vendas/Create
         public ActionResult Create()
         {
+            ViewBag.ItemVendaId = new SelectList(db.ItemVendas, "Id", "Id");
             return View();
         }
 
@@ -47,7 +50,7 @@ namespace SistemaVendas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descricao,DataFabricacao,Preço")] Venda venda)
+        public ActionResult Create([Bind(Include = "Id,DataVenda,ValorTotal,ItemVendaId")] Venda venda)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +59,7 @@ namespace SistemaVendas.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ItemVendaId = new SelectList(db.ItemVendas, "Id", "Id", venda.ItemVendaId);
             return View(venda);
         }
 
@@ -71,6 +75,7 @@ namespace SistemaVendas.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ItemVendaId = new SelectList(db.ItemVendas, "Id", "Id", venda.ItemVendaId);
             return View(venda);
         }
 
@@ -79,7 +84,7 @@ namespace SistemaVendas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descricao,DataFabricacao,Preço")] Venda venda)
+        public ActionResult Edit([Bind(Include = "Id,DataVenda,ValorTotal,ItemVendaId")] Venda venda)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +92,7 @@ namespace SistemaVendas.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ItemVendaId = new SelectList(db.ItemVendas, "Id", "Id", venda.ItemVendaId);
             return View(venda);
         }
 

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaVendas.Models.Produto>
 
 @{
-    ViewBag.Title = "Gerenciar Produtos";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
@@ -12,41 +12,52 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.DisplayName("Descrição do Produto:")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataFabricacao)
+            @Html.DisplayName("Preço:")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Preço)
+            @Html.DisplayName("Quantidade no estoque:")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Disponivel)
+            @Html.DisplayName("Data de Fabricação:")
+        </th>
+        <th>
+            @Html.DisplayName("Válido:")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    var disponivel = item.Disponivel ? "Sim" : "Não";
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataFabricacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preço)
-        </td>
-        <td>
-            @Html.DisplayName(disponivel)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        var dataFabricacao = item.DataFabricacao.ToShortDateString();
+        var valido = item.Valido ? "Sim" : "Não";
+        var preço = "R$ " + item.Preço;
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayName(preço)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                @Html.DisplayName(dataFabricacao)
+            </td>
+            <td>
+                @Html.DisplayName(valido)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

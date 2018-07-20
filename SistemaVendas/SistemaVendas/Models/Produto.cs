@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.ModelConfiguration;
 
 namespace SistemaVendas.Models
 {
     public class Produto
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Descricao { get; set; }
-        public DateTime DataFabricacao { get; set; }
         public double Preço { get; set; }
-        public bool Disponivel { get; set; }
+        public int Estoque { get; set; }
+        public DateTime DataFabricacao { get; set; }
+        public bool Valido { get; set; }
 
-        public virtual ICollection<Venda> Vendas { get; set; }
-        public virtual ICollection<Estoque> Estoques { get; set; }
+        public virtual ICollection<ItemVenda> ItemsDeVenda { get; set; }
     }
+
 }

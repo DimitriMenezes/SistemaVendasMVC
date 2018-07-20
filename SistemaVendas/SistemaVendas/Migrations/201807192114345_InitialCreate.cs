@@ -8,7 +8,7 @@ namespace SistemaVendas.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Estoque",
+                "dbo.ItemVenda",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -23,39 +23,39 @@ namespace SistemaVendas.Migrations
                 "dbo.Produto",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Descricao = c.String(),
-                        DataFabricacao = c.DateTime(nullable: false),
                         Preço = c.Double(nullable: false),
-                        Disponivel = c.Boolean(nullable: false),
+                        Estoque = c.Int(nullable: false),
+                        DataFabricacao = c.DateTime(nullable: false),
+                        Valido = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Venda",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Descricao = c.String(),
-                        DataFabricacao = c.DateTime(nullable: false),
-                        Preço = c.Single(nullable: false),
-                        ProdutoId = c.Int(nullable: false),
+                        DataVenda = c.DateTime(nullable: false),
+                        ValorTotal = c.Single(nullable: false),
+                        ItemVendaId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Produto", t => t.ProdutoId, cascadeDelete: true)
-                .Index(t => t.ProdutoId);
+                .ForeignKey("dbo.ItemVenda", t => t.ItemVendaId, cascadeDelete: true)
+                .Index(t => t.ItemVendaId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Estoque", "ProdutoId", "dbo.Produto");
-            DropForeignKey("dbo.Venda", "ProdutoId", "dbo.Produto");
-            DropIndex("dbo.Venda", new[] { "ProdutoId" });
-            DropIndex("dbo.Estoque", new[] { "ProdutoId" });
+            DropForeignKey("dbo.Venda", "ItemVendaId", "dbo.ItemVenda");
+            DropForeignKey("dbo.ItemVenda", "ProdutoId", "dbo.Produto");
+            DropIndex("dbo.Venda", new[] { "ItemVendaId" });
+            DropIndex("dbo.ItemVenda", new[] { "ProdutoId" });
             DropTable("dbo.Venda");
             DropTable("dbo.Produto");
-            DropTable("dbo.Estoque");
+            DropTable("dbo.ItemVenda");
         }
     }
 }

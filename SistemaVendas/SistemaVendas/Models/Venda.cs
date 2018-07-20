@@ -12,23 +12,21 @@ namespace SistemaVendas.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Descricao { get; set; }
         public DateTime DataVenda { get; set; }
-        public float ValorTotal { get; set; }
-        public int ProdutoId { get; set; }
+        public float ValorTotal { get; set; }        
+        public int ItemVendaId { get; set; }
 
-        [ForeignKey("ProdutoId")]
-        public Produto Produto{ get; set; }
+        [ForeignKey("ItemVendaId")]
+        public ItemVenda ItemDeVenda { get; set; }
     }
 
     internal class VendaTypeConfiguration : EntityTypeConfiguration<Venda>
     {
         public VendaTypeConfiguration()
         {
-            HasRequired(s => s.Produto)
+            HasRequired(s => s.ItemDeVenda)
                 .WithMany(a => a.Vendas)
-                .Map(a => { a.MapKey("ProdutoId"); });
+                .Map(a => { a.MapKey("ItemVendaId"); });
         }
     }
-
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaVendas.Models.Venda>
 
 @{
-    ViewBag.Title = "Vendas";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.DisplayNameFor(model => model.ItemDeVenda.Id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DataVenda)
@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
+            @Html.DisplayFor(modelItem => item.ItemDeVenda.Id)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DataVenda)

@@ -47,7 +47,7 @@ namespace SistemaVendas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Descricao,DataFabricacao,Preço,Disponivel")] Produto produto)
+        public ActionResult Create([Bind(Include = "Id,Descricao,Preço,Estoque,DataFabricacao,Valido")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SistemaVendas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Descricao,DataFabricacao,Preço,Disponivel")] Produto produto)
+        public ActionResult Edit([Bind(Include = "Id,Descricao,Preço,Estoque,DataFabricacao,Valido")] Produto produto)
         {
             if (ModelState.IsValid)
             {
